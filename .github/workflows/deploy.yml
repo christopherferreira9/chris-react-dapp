@@ -28,10 +28,10 @@ jobs:
         run: vercel pull --yes --environment=${{ inputs.type }} --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
         working-directory: ./react
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
         working-directory: ./react
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
 
   Deploy-Next:
     runs-on: ubuntu-latest
@@ -46,10 +46,10 @@ jobs:
         run: vercel pull --yes --environment=${{ inputs.type }} --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
         working-directory: ./nextjs-demo
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
         working-directory: ./nextjs-demo
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
 
 
 
