@@ -5,6 +5,14 @@ env:
 
 on:
   workflow_dispatch:
+    inputs:
+      type:
+        type: choice
+        description: Type
+        default: 'production'
+        options:
+          - production
+          - preview
 
 jobs:
   Deploy-React:
@@ -17,7 +25,7 @@ jobs:
         run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information
         working-directory: ./react
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=${{ inputs.type }} --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
         working-directory: ./react
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
@@ -35,7 +43,7 @@ jobs:
         run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information
         working-directory: ./nextjs-demo
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=${{ inputs.type }} --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
         working-directory: ./nextjs-demo
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
